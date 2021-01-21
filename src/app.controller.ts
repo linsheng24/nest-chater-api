@@ -11,7 +11,7 @@ import { LocalAuthGuard } from './auth/local-auth.guard';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { AuthService } from './auth/auth.service';
 import { LoginDto } from './dto/login_dto';
-import { ApiSecurity } from '@nestjs/swagger';
+import { ApiSecurity, ApiTags } from '@nestjs/swagger';
 
 @Controller()
 export class AppController {
@@ -20,17 +20,14 @@ export class AppController {
     private readonly authService: AuthService,
   ) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
-
+  @ApiTags('auth')
   @UseGuards(LocalAuthGuard)
   @Post('auth/login')
   async login(@Request() req, @Body() loginDto: LoginDto) {
     return this.authService.login(req.user);
   }
 
+  @ApiTags('auth')
   @ApiSecurity('basic')
   @UseGuards(JwtAuthGuard)
   @Post('auth/user')
