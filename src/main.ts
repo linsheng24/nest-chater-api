@@ -10,7 +10,6 @@ async function bootstrap() {
     .setTitle('Nest API')
     .setDescription('The API document')
     .setVersion('1.0')
-    .addTag('linsheng')
     .addSecurity('basic', {
       type: 'http',
       scheme: 'bearer',

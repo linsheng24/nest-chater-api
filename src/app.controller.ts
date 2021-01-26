@@ -31,7 +31,12 @@ export class AppController {
   @ApiSecurity('basic')
   @UseGuards(JwtAuthGuard)
   @Post('auth/user')
-  getCurrentUser(@Request() req) {
+  async getCurrentUser(@Request() req) {
+    await sleep(1000);
     return req.user;
   }
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
