@@ -6,17 +6,17 @@ export class UserEntity {
   id: number;
 
   @Column()
-  firstName: string;
+  first_name: string;
 
   @Column()
-  lastName: string;
+  last_name: string;
 
   @Column()
   email: string;
 
   @Column()
-  encrypted_password: string;
+  encode_password: string;
 
   @Column({ default: true })
-  isActive: boolean;
+  is_active: boolean;
 }
