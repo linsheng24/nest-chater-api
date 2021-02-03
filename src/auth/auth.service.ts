@@ -11,8 +11,8 @@ export class AuthService {
 
   async validateUser(email: string, password: string): Promise<any> {
     const user = await this.userService.findOne(email);
-    if (user && user.encode_password == password) {
-      const { encode_password, ...result } = user;
+    if (user && user.encodePassword == password) {
+      const { encodePassword, ...result } = user;
       return result;
     } else {
       return null;
@@ -22,8 +22,9 @@ export class AuthService {
   async login(user: any) {
     const payload = {
       email: user.email,
-      first_name: user.first_name,
-      last_name: user.last_name,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      photos: user.photos,
       sub: user.userId,
     };
     return {

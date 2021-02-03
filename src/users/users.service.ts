@@ -15,6 +15,9 @@ export class UsersService {
   }
 
   async findOne(email: string): Promise<UserEntity | undefined> {
-    return this.userRepository.findOne({ email: email });
+    return this.userRepository.findOne({
+      where: { email: email },
+      relations: ['photos'],
+    });
   }
 }

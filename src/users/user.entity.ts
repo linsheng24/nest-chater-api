@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { PhotoEntity } from '../photo/photo.entity';
 
 @Entity({ name: 'users' })
 export class UserEntity {
@@ -6,17 +7,20 @@ export class UserEntity {
   id: number;
 
   @Column()
-  first_name: string;
+  firstName: string;
 
   @Column()
-  last_name: string;
+  lastName: string;
 
   @Column()
   email: string;
 
   @Column()
-  encode_password: string;
+  encodePassword: string;
 
   @Column({ default: true })
-  is_active: boolean;
+  isActive: boolean;
+
+  @OneToMany(() => PhotoEntity, (photo) => photo.user)
+  photos: PhotoEntity[];
 }
