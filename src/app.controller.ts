@@ -3,7 +3,7 @@ import { AppService } from './app.service';
 import { LocalAuthGuard } from './auth/local-auth.guard';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { AuthService } from './auth/auth.service';
-import { LoginDto } from './dto/login_dto';
+import { LoginDto } from './dtos/login_dto';
 import { ApiSecurity, ApiTags } from '@nestjs/swagger';
 
 @Controller()

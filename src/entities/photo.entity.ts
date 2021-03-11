@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { UserEntity } from '../user/user.entity';
+import { UserEntity } from '../entities/user.entity';
 
 @Entity({ name: 'photos' })
 export class PhotoEntity {
@@ -11,4 +11,7 @@ export class PhotoEntity {
 
   @Column()
   url: string;
+
+  @Column({ default: false })
+  isActive: boolean;
 }
