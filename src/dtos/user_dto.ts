@@ -13,4 +13,7 @@ export class UserDto {
 
   @ApiProperty()
   photos: PhotoDto[];
+
+  @ApiProperty()
+  profileData: [];
 }

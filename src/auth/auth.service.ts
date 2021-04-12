@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { PhotoEntity } from '../entities/photo.entity';
+import { UserProfileEntity } from '../entities/userProfile.entity';
 
 @Injectable()
 export class AuthService {
@@ -12,6 +13,10 @@ export class AuthService {
 
   async validateUser(email: string, password: string): Promise<any> {
     const user = await this.userService.findOne(email);
+    const profileData = user.profileData.map((data: UserProfileEntity) => {
+      const { name, text, type, require, editable } = data.profileField;
+      return { name, text, type, require, editable, data: data.data };
+    });
     const photos = user.photos.map((photo: PhotoEntity) => {
       return {
         token: photo.id,
@@ -22,7 +27,7 @@ export class AuthService {
 
     if (user && user.encodePassword == password) {
       const { encodePassword, ...result } = user;
-      return { ...result, photos: photos };
+      return { ...result, photos: photos, profileData: profileData };
     } else {
       return null;
     }
@@ -34,6 +39,7 @@ export class AuthService {
       firstName: user.firstName,
       lastName: user.lastName,
       photos: user.photos,
+      profileData: user.profileData,
       sub: user.userId,
     };
     return {
