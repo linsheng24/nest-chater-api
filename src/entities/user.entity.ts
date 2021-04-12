@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { PhotoEntity } from './photo.entity';
+import { UserProfileEntity } from './userProfile.entity';
 
 @Entity({ name: 'users' })
 export class UserEntity {
@@ -39,6 +40,9 @@ export class UserEntity {
 
   @OneToMany(() => PhotoEntity, (photo) => photo.user)
   photos: PhotoEntity[];
+
+  @OneToMany(() => UserProfileEntity, (profileData) => profileData.user)
+  profileData: UserProfileEntity[];
 
   @CreateDateColumn()
   create: string;

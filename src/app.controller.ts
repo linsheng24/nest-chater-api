@@ -5,6 +5,7 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { AuthService } from './auth/auth.service';
 import { LoginDto } from './dtos/login_dto';
 import { ApiSecurity, ApiTags } from '@nestjs/swagger';
+import { UserDto } from './dtos/user_dto';
 
 @Controller()
 export class AppController {
@@ -24,7 +25,7 @@ export class AppController {
   @ApiSecurity('basic')
   @UseGuards(JwtAuthGuard)
   @Post('auth/user')
-  async getCurrentUser(@Request() req) {
+  async getCurrentUser(@Request() req): Promise<UserDto> {
     await sleep(1000);
     return req.user;
   }
