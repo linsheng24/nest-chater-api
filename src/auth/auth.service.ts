@@ -33,11 +33,26 @@ export class AuthService {
     }
   }
 
+  async getPayloadUser(user) {
+    const profileData = user.profileData.map((data: UserProfileEntity) => {
+      const { name, text, type, require, editable } = data.profileField;
+      return { name, text, type, require, editable, data: data.data };
+    });
+    const photos = user.photos.map((photo: PhotoEntity) => {
+      return {
+        token: photo.id,
+        url: photo.url,
+        isMain: photo.isMain,
+      };
+    });
+    const { encodePassword, ...result } = user;
+    return { ...result, photos: photos, profileData: profileData };
+  }
+
   async login(user: any) {
     const payload = {
+      id: user.id,
       email: user.email,
-      firstName: user.firstName,
-      lastName: user.lastName,
       photos: user.photos,
       profileData: user.profileData,
       sub: user.userId,

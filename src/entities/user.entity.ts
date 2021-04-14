@@ -15,22 +15,7 @@ export class UserEntity {
   id: number;
 
   @Column({ default: null })
-  firstName: string;
-
-  @Column({ default: null })
-  lastName: string;
-
-  @Column({ default: null })
   email: string;
-
-  @Column({ default: null })
-  intro: string;
-
-  @Column({ default: null })
-  status: string;
-
-  @Column({ type: 'date', default: null })
-  birth: string;
 
   @Column()
   encodePassword: string;

@@ -6,12 +6,6 @@ export class UserDto {
   email: string;
 
   @ApiProperty()
-  firstName: string;
-
-  @ApiProperty()
-  lastName: string;
-
-  @ApiProperty()
   photos: PhotoDto[];
 
   @ApiProperty()
