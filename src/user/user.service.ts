@@ -4,7 +4,6 @@ import { UserEntity } from '../entities/user.entity';
 import { getManager, Repository } from 'typeorm';
 import { EditProfileDto } from '../dtos/edit_profile_dto';
 import { UserProfileEntity } from '../entities/userProfile.entity';
-import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class UserService {
