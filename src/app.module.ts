@@ -13,6 +13,7 @@ import { InterestEntity } from './entities/interest.entity';
 import { InterestController } from './interest/interest.controller';
 import { InterestService } from './interest/interest.service';
 import { InterestModule } from './interest/interest.module';
+import { AppGateway } from './appGateway';
 
 @Module({
   imports: [
@@ -37,6 +38,6 @@ import { InterestModule } from './interest/interest.module';
     InterestModule,
   ],
   controllers: [AppController, UserController, InterestController],
-  providers: [AppService],
+  providers: [AppService, AppGateway],
 })
 export class AppModule {}
