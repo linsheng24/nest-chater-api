@@ -2176,7 +2176,7 @@ debug@2.6.9, debug@^2.2.0, debug@^2.3.3:
   dependencies:
     ms "2.0.0"
 
-debug@^4.0.1, debug@^4.1.0, debug@^4.1.1, debug@~4.3.1:
+debug@^4.0.1, debug@^4.1.0, debug@^4.1.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.1.tgz#f0d229c505e0c6d8c49ac553d1b13dc183f6b2ee"
   integrity sha512-doEwdvm4PCeK4K3RQN2ZC2BYUBaxwLARCqZmMjtF8a51J2Rb0xpVloFRnCODwqjpwnAoao4pelN8l3RJdv3gRQ==
@@ -5555,11 +5555,6 @@ snapdragon@^0.8.1:
     source-map-resolve "^0.5.0"
     use "^3.1.0"
 
-socket.io-adapter@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/socket.io-adapter/-/socket.io-adapter-2.2.0.tgz#43af9157c4609e74b8addc6867873ac7eb48fda2"
-  integrity sha512-rG49L+FwaVEwuAdeBRq49M97YI3ElVabJPzvHT9S6a2CWhDKnjSFasvwAwSYPRhQzfn4NtDIbCaGYgOCOU/rlg==
-
 socket.io-adapter@~1.1.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/socket.io-adapter/-/socket.io-adapter-1.1.2.tgz#ab3f0d6f66b8fc7fca3959ab5991f82221789be9"
@@ -5600,15 +5595,15 @@ socket.io-parser@~3.4.0:
     debug "~4.1.0"
     isarray "2.0.1"
 
-socket.io-redis@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/socket.io-redis/-/socket.io-redis-6.1.0.tgz#8b22a108672dee428169a9bb6fef97b65e0cb7e0"
-  integrity sha512-2xdfTJ2+wsnLkai503ULRSEO7vpzM7KkkszHcWbWyw2H7fcX6wFUo9VBKtyAP8IfWnpg8IaGfC4Z4h9ZyasFoQ==
+socket.io-redis@5.4.0:
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/socket.io-redis/-/socket.io-redis-5.4.0.tgz#d54bb8b757d04e9c0999d9a4ad07fc6c31bc848f"
+  integrity sha512-yCQm/Sywd3d08WXUfZRxt6O+JV2vWoPgWK6GVjiM0GkBtq5cpLOk8oILRPKbzTv1VEtSYmK41q0xzcgDinMbmQ==
   dependencies:
-    debug "~4.3.1"
+    debug "~4.1.0"
     notepack.io "~2.2.0"
     redis "^3.0.0"
-    socket.io-adapter "^2.2.0"
+    socket.io-adapter "~1.1.0"
     uid2 "0.0.3"
 
 socket.io@2.4.1:
