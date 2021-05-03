@@ -1,4 +1,4 @@
-import { Controller, Post } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { InterestService } from './interest.service';
 
@@ -7,7 +7,7 @@ export class InterestController {
   constructor(private readonly interestService: InterestService) {}
 
   @ApiTags('interest')
-  @Post('mapping')
+  @Get('mapping')
   async index() {
     let interests: {
       id: number;
