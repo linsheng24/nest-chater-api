@@ -11,9 +11,11 @@ import { UserController } from './user/user.controller';
 import { UserProfileEntity } from './entities/userProfile.entity';
 import { InterestEntity } from './entities/interest.entity';
 import { InterestController } from './interest/interest.controller';
-import { InterestService } from './interest/interest.service';
 import { InterestModule } from './interest/interest.module';
 import { AppGateway } from './appGateway';
+import { MongooseModule } from '@nestjs/mongoose';
+import { MessageService } from './message/message.service';
+import { MessageModule } from './message/message.module';
 
 @Module({
   imports: [
@@ -33,9 +35,11 @@ import { AppGateway } from './appGateway';
       ],
       synchronize: true,
     }),
+    MongooseModule.forRoot('mongodb://localhost'),
     AuthModule,
     UserModule,
     InterestModule,
+    MessageModule,
   ],
   controllers: [AppController, UserController, InterestController],
   providers: [AppService, AppGateway],
