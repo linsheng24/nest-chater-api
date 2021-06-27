@@ -7,14 +7,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from './entities/user.entity';
 import { PhotoEntity } from './entities/photo.entity';
 import { profileFieldEntity } from './entities/profileField.entity';
-import { UserController } from './user/user.controller';
 import { UserProfileEntity } from './entities/userProfile.entity';
 import { InterestEntity } from './entities/interest.entity';
-import { InterestController } from './interest/interest.controller';
 import { InterestModule } from './interest/interest.module';
 import { AppGateway } from './appGateway';
 import { MongooseModule } from '@nestjs/mongoose';
-import { MessageService } from './message/message.service';
 import { MessageModule } from './message/message.module';
 
 @Module({
@@ -41,7 +38,7 @@ import { MessageModule } from './message/message.module';
     InterestModule,
     MessageModule,
   ],
-  controllers: [AppController, UserController, InterestController],
+  controllers: [AppController],
   providers: [AppService, AppGateway],
 })
 export class AppModule {}
