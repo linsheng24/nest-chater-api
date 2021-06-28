@@ -1,7 +1,16 @@
-import { Column, CreateDateColumn, Entity, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity({ name: 'matchers' })
 export class MatchersEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
+
   @Column({ default: true })
   isActive: boolean;
 

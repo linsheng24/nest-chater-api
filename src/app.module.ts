@@ -16,22 +16,7 @@ import { MessageModule } from './message/message.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: '',
-      database: 'test',
-      entities: [
-        UserEntity,
-        PhotoEntity,
-        profileFieldEntity,
-        UserProfileEntity,
-        InterestEntity,
-      ],
-      synchronize: true,
-    }),
+    TypeOrmModule.forRoot(),
     MongooseModule.forRoot('mongodb://localhost'),
     AuthModule,
     UserModule,
