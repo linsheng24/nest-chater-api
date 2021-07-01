@@ -1,15 +1,25 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { InterestsController } from './interests.controller';
+import { InterestController } from './interest.controller';
+import { InterestService } from './interest.service';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { InterestEntity } from '../entities/interest.entity';
 
-describe('InterestsController', () => {
-  let controller: InterestsController;
+describe('InterestController', () => {
+  let controller: InterestController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [InterestsController],
+      providers: [
+        InterestService,
+        {
+          provide: getRepositoryToken(InterestEntity),
+          useValue: {},
+        },
+      ],
+      controllers: [InterestController],
     }).compile();
 
-    controller = module.get<InterestsController>(InterestsController);
+    controller = module.get<InterestController>(InterestController);
   });
 
   it('should be defined', () => {
