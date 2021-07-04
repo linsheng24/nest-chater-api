@@ -8,11 +8,11 @@ import { InterestModule } from './interest/interest.module';
 import { AppGateway } from './appGateway';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MessageModule } from './message/message.module';
-// import { ConfigModule } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    // ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot(),
     MongooseModule.forRoot('mongodb://localhost'),
     AuthModule,
