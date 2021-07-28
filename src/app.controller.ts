@@ -42,6 +42,8 @@ export class AppController {
   @Get('test')
   async test(@Request() req) {
     this.messageService.create({
+      sender: 5,
+      receiver: 1,
       content: 'test',
       type: 1,
       action: 'receive',

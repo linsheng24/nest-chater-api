@@ -2,7 +2,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { UserProfileEntity } from './userProfile.entity';
 
 @Entity({ name: 'profile_fields' })
-export class profileFieldEntity {
+export class ProfileFieldEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

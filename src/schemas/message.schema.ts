@@ -9,6 +9,12 @@ export class Message {
   content: string;
 
   @Prop()
+  sender: number;
+
+  @Prop()
+  receiver: number;
+
+  @Prop()
   type: number;
 
   @Prop()

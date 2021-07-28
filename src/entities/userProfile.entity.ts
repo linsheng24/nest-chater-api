@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { UserEntity } from './user.entity';
-import { profileFieldEntity } from './profileField.entity';
+import { ProfileFieldEntity } from './profileField.entity';
 
 @Entity({ name: 'user_profile' })
 export class UserProfileEntity {
@@ -14,8 +14,8 @@ export class UserProfileEntity {
   user: UserEntity;
 
   @ManyToOne(
-    () => profileFieldEntity,
+    () => ProfileFieldEntity,
     (profileField) => profileField.profileData,
   )
-  profileField: profileFieldEntity;
+  profileField: ProfileFieldEntity;
 }
