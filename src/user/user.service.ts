@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { UserEntity } from "../entities/user.entity";
-import { getManager, Repository } from "typeorm";
+import { createQueryBuilder, getConnection, getManager, getRepository, Repository } from "typeorm";
 import { EditProfileDto } from "../dtos/edit_profile_dto";
 import { UserProfileEntity } from "../entities/userProfile.entity";
 import { ProfileFieldEntity } from "../entities/profileField.entity";
@@ -44,19 +44,42 @@ export class UserService {
 
   async edit(userId, editProfileDto: EditProfileDto) {
     const { field, value } = editProfileDto;
-    const entityManager = getManager();
-    //先直接 update order insert 再抓 user
+    const profileField = await this.profileFieldRepository
+      .createQueryBuilder("profile_fields")
+      .leftJoinAndSelect("profile_fields.profileData", "profileData", 'profileData.userId = :userId',{ userId: userId })
+      .where("profile_fields.name = :name", { name: field })
+      .getOne();
 
-    const user = await entityManager.findOne(UserEntity, {
+    if (profileField.profileData.length > 0) {
+      const userProfile = profileField.profileData[0];
+      userProfile.data = value
+      await this.userProfileRepository.save(userProfile);
+    } else {
+      const newUserProfile = await this.userProfileRepository.create();
+      newUserProfile.data = value;
+      newUserProfile.userId = userId;
+      newUserProfile.profileFieldId = profileField.id;
+      await this.userProfileRepository.save(newUserProfile);
+    }
+
+    const entityManager = getManager();
+    const userData = await entityManager.findOne(UserEntity, {
       where: { id: userId },
       relations: ['photos', 'profileData', 'profileData.profileField'],
     })
-    for (const item of user.profileData) {
-      if (item.profileField.name === field) {
-        item.data = value;
-        await this.userProfileRepository.save(item);
+    const { id, email, encodePassword, photos, profileData } = userData;
+    const profileFields = await this.profileFieldRepository.find({});
+    let profileDataDetail = profileFields.map(profileField => {
+      let userFieldData = profileData.filter(item => item.profileField.id === profileField.id);
+      if (userFieldData.length > 0) {
+        return userFieldData[0];
+      } else {
+        return {
+          data: null,
+          profileField: profileField
+        };
       }
-    }
-    return user;
+    });
+    return { id, email, encodePassword, photos, profileData: profileDataDetail };
   }
 }
